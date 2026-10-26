@@ -1,0 +1,13 @@
+{
+  "name": "ha-sales-report",
+  "version": "1.0.0",
+  "description": "Clean and validate Hungry Artisan Amazon sales exports for Looker Studio (Python backend, npm runner)",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "start": "node scripts/run.js",
+    "clean": "node scripts/clean.js"
+  },
+  "keywords": ["amazon", "sales", "csv", "looker-studio", "data-cleaning", "pandas"],
+  "author": "Wes Bro",
+  "license": "MIT"
+}

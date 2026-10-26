@@ -1,0 +1,10 @@
+# Sensitive sales exports
+
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local configuration
+.env
