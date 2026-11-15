@@ -428,6 +428,40 @@ def normalize(df: pd.DataFrame, name_to_code: dict, code_to_region: dict, valid_
                     df.loc[us_scope, "Total Sales"] / denom * 100
                 ).round(6)
 
+        # Region/State breakdowns. Each value is constant within its group (every
+        # U.S. row of one SKU+Region carries the same number), so these are read
+        # with MAX or AVG in Looker - summing them would multiply by the row count.
+        # The numerator is the group's sales, the denominator its parent: the same
+        # SKU (or the whole U.S. market) when the column is scoped to total sales.
+        # Two decimals is enough here because the values are group-sized (>=0.01),
+        # unlike the two additive columns above, where a single order is ~0.001%.
+        breakdown_cols = [
+            "US Share of SKU Sales by Region (%)",
+            "US Share of SKU Sales by State (%)",
+            "US Share of Total Sales by Region (%)",
+            "US Share of Total Sales by State (%)",
+        ]
+        for col in breakdown_cols:
+            df[col] = float("nan")
+        us_rows = df.loc[us_scope]
+        for col, sku_key, geo_key in (
+            (breakdown_cols[0], PRODUCT_COL, "Region (Standardized)"),
+            (breakdown_cols[1], PRODUCT_COL, "State (Standardized)"),
+            (breakdown_cols[2], None, "Region (Standardized)"),
+            (breakdown_cols[3], None, "State (Standardized)"),
+        ):
+            if geo_key not in df.columns:
+                continue
+            keys = [geo_key] if sku_key is None or sku_key not in df.columns else [sku_key, geo_key]
+            group_total = us_rows.groupby(keys)["Total Sales"].transform("sum")
+            if len(keys) > 1:
+                parent_total = us_rows.groupby(keys[0])["Total Sales"].transform("sum")
+            else:
+                parent_total = us_total
+            df.loc[us_scope, col] = (
+                group_total / pd.Series(parent_total, index=us_rows.index).replace(0, float("nan")) * 100
+            ).round(2)
+
     ordered = original_cols + [
         "Shipment Date",
         "Shipment Year-Month",
@@ -457,6 +491,10 @@ def normalize(df: pd.DataFrame, name_to_code: dict, code_to_region: dict, valid_
         "record_status",
         "US Share of Total Sales (%)",
         "US Share of SKU Sales (%)",
+        "US Share of SKU Sales by Region (%)",
+        "US Share of SKU Sales by State (%)",
+        "US Share of Total Sales by Region (%)",
+        "US Share of Total Sales by State (%)",
     ]
     return df[[c for c in ordered if c in df.columns]]
 
