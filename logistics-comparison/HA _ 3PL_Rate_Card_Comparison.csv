@@ -1,0 +1,49 @@
+3PL HUB Status,,,,,,Normalization Notes & Mapping Basis
+Status:,RC Received,RC Received,RC Received,RC Received,To Follow,Provider status from tracking sheet
+Provider,Flexport,3PL Guys,Prep Center LA (PCLA),CALIFORNIA FBA PREP CENTER,Matrix Fulfillment,Provider name
+Rate card Data:,Flexport_3PL_Rate_Card.pdf,3plguys_pricing-2.pdf,PCLA-Rate-Card-Comparison-Standard-Pro-Enterprise.pdf,CALIFORNIA FBA PREP CENTER_SHF_Price_072026.pdf,To Follow,Source rate card document reference
+3PL HUB (Rate Card To Fill Up IF Available),,,,,,Section header
+Where do this scenario's units go?,,,,,,Scenario destination routing input
+Route through a forwarder / 3PL hub (unload and split)?,,,,,,Routing workflow toggle
+Hub: container unload per container ($),490.00,800.00,550.00,500.00,,"Standard 40ft/40HQ baseline. Flexport: $490 palletized/HQ; 3PL Guys: $800 floor-loaded 40ft/HQ; PCLA: $550 rate card ($650 HC, +$100 if floor-loaded); CA Prep: $500 floor-loaded (<1500 boxes)"
+Hub: receive and palletize per pallet ($),16.50,15.00,12.00,15.00,,"Per-pallet receiving/palletizing. Flexport: $16.50 (wrap incl); 3PL Guys: $15.00 palletized receiving; PCLA: $12.00/pallet ($25 in alt section); CA Prep: $15.00 inbound palletizing ($10 palletized unload)"
+Hub: sort / re-carton per carton ($),0.30,,0.08,0.90,,"Carton/unit sort fees. Flexport: $0.30/non-palletized carton; 3PL Guys: none (either/or container model); PCLA: $0.08/unit per-unit receiving; CA Prep: $0.90/carton sorting mixed SKU"
+Hub: channel labels per carton ($),0.35,0.20,,0.50,,"Carton/box label fees. Flexport: $0.35/label; 3PL Guys: $0.20/unit label; PCLA: included in FBA prep ($0.75-$1.25/unit); CA Prep: $0.50 outbound LTL box label"
+Hub: outbound pallet build per pallet ($),16.50,25.00,19.00,15.00,,"Outbound pallet prep/build. Flexport: $16.50 palletizing; 3PL Guys: $25.00 LTL pallet forwarding; PCLA: $19.00 outbound pallet & shrink-wrap; CA Prep: $15.00 outbound pallet build"
+Hub: handling + admin per outbound delivery ($),,1.00,5.00,25.00,,"Outbound documentation & handling fees. Flexport: per man-hr ($45); 3PL Guys: $1.00/carton handling; PCLA: $5.00 BOL fee (LTL/FTL); CA Prep: $25.00 BOL fee (+$10 pick & load)"
+Hub: storage per pallet per week ($),19.25,7.00,6.53,5.83,,"Normalized to weekly ($/pallet/wk). Flexport: $2.75/day x 7 = $19.25/wk (4 free days); 3PL Guys: $30/mo / 4.286 = $7.00/wk; PCLA: $28/mo / 4.286 = $6.53/wk (first 30 days free); CA Prep: $25/mo (10+ pallets) / 4.286 = $5.83/wk"
+Hub: days before the split,,,,,,Shipment turnaround assumption input
+CBM per pallet,,,,,,Pallet volume specification input
+"Damage / shrink, % of customs value",,,,,,Inventory shrinkage reserve input
+Containers unloaded (calculated),,,,,,Calculated from shipment volume and container size
+Pallets received (calculated),,,,,,Calculated from carton count and cartons-per-pallet
+Hub fees total (calculated),,,,,,Calculated sum of hub receiving/prep/storage fees
+9. LAST MILE FROM THE HUB (used when routing through a hub),,,,,,Section header
+LTL to Amazon AWD / FBA per pallet ($),Quote required,Quote required,Quote required,Quote required,,"All providers require destination zip codes to quote linehaul/LTL freight (CA Prep lists generic $10 pallet forwarding only)"
+LTL to Walmart WFS per pallet ($),Quote required,Quote required,Quote required,Quote required,,"Requires destination fulfillment center zip codes for specific freight carrier rate"
+LTL to TikTok FBT per pallet ($),Quote required,Quote required,Quote required,Quote required,,"Requires destination fulfillment center zip codes for specific freight carrier rate"
+Full-truckload cap per destination ($),,,,,,Carrier truckload contract ceiling input
+LTL minimum per delivery ($),,,,,,Carrier minimum charge per LTL dispatch
+Appointment / liftgate per delivery ($),,,,,,Accessorial destination delivery charge
+Pallets to AWD (calculated),,,,,,Calculated allocation to Amazon AWD
+Pallets to FBA direct (calculated),,,,,,Calculated allocation to Amazon FBA direct
+Pallets to Walmart WFS (calculated),,,,,,Calculated allocation to Walmart WFS
+Pallets to TikTok FBT (calculated),,,,,,Calculated allocation to TikTok FBT
+Separate deliveries (calculated),,,,,,Calculated number of required outbound LTL/FTL dispatches
+"Last mile to AWD ($, calculated)",,,,,,Calculated total freight cost to AWD
+"Last mile to FBA direct ($, calculated)",,,,,,Calculated total freight cost to FBA direct
+"Last mile to Walmart WFS ($, calculated)",,,,,,Calculated total freight cost to Walmart WFS
+"Last mile to TikTok FBT ($, calculated)",,,,,,Calculated total freight cost to TikTok FBT
+Cost of splitting the load: hub + last mile ($),,,,,,Calculated total hub processing plus last mile freight
+10. AMAZON AWD FEES (units going to AWD),,,,,,Section header
+Include AWD processing and storage fees?,,,,,,Toggle for AWD inbound fee model
+Average months stock sits in AWD,,,,,,Storage duration assumption for AWD inventory
+AWD fees (calculated),,,,,,Calculated based on Amazon AWD published fee schedule
+"11. SHOPIFY FULFILLMENT (memo, not in the landed total)",,,,,,Section header
+Shopify orders fulfilled from,,,,,,Fulfillment origin facility toggle
+Share of units that sell on Shopify,,,,,,Volume share allocation input
+Months stock sits before the order ships,,,,,,Turnaround time before DTC sale
+Extra fee out of TikTok FBT stock ($/unit),,,,,,Channel diversion fee if fulfilled via FBT stock
+"Hub 3PL pick, pack and postage ($/order)",Quote required,Quote required,1.50,1.10,,"Base B2C pick & pack rate. Flexport/3PL Guys: custom DTC quote required; PCLA: from $1.50/order (Standard rate card); CA Prep: $1.10 ($0.85 order fee @ 500+ orders + $0.15 line + $0.10 pick)"
+"Shopify fulfillment total ($, calculated)",,,,,,Calculated DTC total fulfillment cost
+"Per Shopify unit ($, calculated)",,,,,,Calculated unitized DTC fulfillment cost

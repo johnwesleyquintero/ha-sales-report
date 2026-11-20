@@ -1,0 +1,170 @@
+# Logistics Optimization: Multi-Forwarder Quoting System + First Cost Analysis
+
+**Owner:** Wesley Quintero  
+**Due:** December 31, 2026
+
+**WHY THIS ROCK EXISTS**  
+Hungry Artisan ships all inventory from China to the US, CA, and UK through a single freight forwarder — AGL (Amazon Global Logistics). No competitive quoting process exists. Every shipment is booked at AGL's rate with no market comparison, no visibility into alternatives, and no documented cost analysis.
+
+The face-value savings from alternative forwarders may be partially offset by Amazon ecosystem benefits — inbound placement fee waivers, AGL's discounted rates vs. market, and AWD auto-replenishment. Those benefits are real and must be quantified before any routing decision is made. This rock is the infrastructure and research work that makes an informed 2027 logistics decision possible.
+
+**SUPPORTING DATA**
+- Current inbound freight: all shipments booked through AGL — no alternative quotes obtained to date
+- Markets: China > US (AWD), China > CA (Vancouver FBA), China > UK (SSD Logistix)
+- Amazon ecosystem benefits at risk if routing changes: inbound placement fee waivers ($0.27-$1.58/unit), AGL discount vs market rate (estimated 10-20%), AWD auto-replenishment
+- Full logistics strategy and Step 1 data requirements documented in the 2027 Logistics Strategy: *Hungry Artisan — 2027 Logistics Strategy*
+
+## Immediate Next Action
+
+**Direction from Justin (Oct 28, 2026):** Use Amazon's published AWD/AGL fee information and available Seller Central shipping data as the starting sources. The PO-tab document requested for access is a supplier invoice, so it is not needed for this initial review.
+
+- [ ] Review Amazon's official AWD and AGL fee schedules and record the source links and date checked.
+- [ ] Review available Seller Central shipping records to establish a historical shipment cost baseline.
+- [ ] Identify freight cost components that are missing, unclear, or not directly comparable; record assumptions separately from verified figures.
+- [ ] Use the verified data to test the multi-forwarder comparison sheet and check that its inputs and calculations behave as expected.
+- [ ] Continue gathering comparable quotes from AGL and alternative forwarders; do not treat published Amazon fees as a substitute for forwarder-specific quotes.
+
+## Milestones
+
+- **October:** Contact AGL and a minimum of 2 alternative forwarders, request rate cards, build quote comparison framework, obtain 3+ bids on every active shipment from day one.
+- **November:** Complete total cost of ownership analysis — AGL vs alternatives, including full Amazon ecosystem discount quantification. Deliver written recommendation to Justin.
+- **December:** Execute at least one shipment under the new framework. Document the cost comparison. Prove the process works end to end.
+
+## What Done Looks Like
+
+- Multi-forwarder quoting system live by October 31: minimum 3 forwarders (AGL + 2 alternatives) quoting on every China-US, China-CA, and China-UK shipment. Quote comparison framework documented and in use.
+- Full logistics cost analysis delivered by November 30: total cost of ownership comparison — current AGL model vs multi-forwarder alternatives, including Amazon ecosystem discount impact. Written recommendation to Justin with supporting data.
+- First shipment executed under new framework by December 31: at least one inbound shipment completed using the new quoting process, with documented cost comparison and final recommendation on file.
+
+## Open Investigation — FBA Inbound Placement Cost Optimization (Canada & UK)
+
+**Request from Justin (Oct 27, 2026):** Determine whether we can use the shipment-creation workflow to identify more cost-effective Amazon FBA inbound placement options in Canada and the UK. Justin noted that some teams create and cancel shipment plans to compare options and asked whether this is possible in these marketplaces.
+
+**Context / current understanding**
+- For inventory already stored in AWD and replenished manually to FBA, the seller controls the SKU and quantity, but Amazon assigns the receiving fulfillment center.
+- For shipments created directly to FBA from a supplier or 3PL, Seller Central may present placement options and associated fees. These options need to be checked in each marketplace; availability and rules may differ between Canada and the UK.
+- This is an investigation request only. No shipment should be repeatedly created/canceled, and no routing or booking process should change, until the available options, cancellation implications, and applicable Amazon rules are verified.
+
+**Questions to answer**
+1. In Canada and the UK, what inbound placement options and fee estimates are shown for direct-to-FBA shipments?
+2. Do the available options or estimated fees change when a shipment plan is recreated for the same shipment details?
+3. What are the consequences of canceling or deleting a shipment plan, including possible inbound defects, fees, or operational delays?
+4. How do placement fees compare with the full logistics cost and any Amazon program benefits for the relevant route?
+5. Is there a compliant, repeatable process to compare options without creating duplicate shipments or disrupting inventory plans?
+
+**Next steps**
+- [ ] Check current Seller Central placement options and fee estimates for Canada and the UK using representative shipment details.
+- [ ] Confirm current Amazon guidance and any cancellation/defect implications before testing the create/cancel approach.
+- [ ] Record screenshots or source evidence, shipment assumptions, fee estimates, and date checked.
+- [ ] Compare the available options on a like-for-like basis and quantify potential savings, if any.
+- [ ] Share findings with Justin and Victoria before recommending a process change.
+
+**Status:** Open — research pending. No savings or marketplace capability has been confirmed yet.
+
+
+## AWD Elimination Feasibility — Routing Scenarios
+
+The three scenarios below frame the core US investigation. They are alternatives to evaluate, not approved routing changes. The central question is whether HA can bypass or eliminate AWD for some or all US inventory without increasing total cost, creating unacceptable inventory risk, or losing important replenishment and fulfillment benefits.
+
+### Scenario A — Current workflow (baseline)
+
+```mermaid
+flowchart LR
+    A[China Supplier] --> B[AGL]
+    B --> C[AWD]
+    C --> D[FBA]
+```
+
+Existing model and cost baseline. Document the actual freight, AWD, replenishment, placement, storage, and handling costs, along with the operational benefits currently provided.
+
+### Scenario B — Direct-to-FBA (AWD bypass)
+
+```mermaid
+flowchart LR
+    A[China Supplier] --> B[Freight Forwarder]
+    B --> C[FBA]
+```
+
+Investigate whether inventory can move directly from China to eligible FBA destinations, bypassing AWD. Validate inbound eligibility, shipment splitting and destination assignments, placement fees, receiving requirements, replenishment frequency, and any benefits lost by not using AWD.
+
+### Scenario C — Third-party logistics distribution
+
+```mermaid
+flowchart LR
+    A[China Supplier] --> B[Freight Forwarder]
+    B --> C[3PL]
+    C --> D[FBA / WFS / FBT]
+```
+
+Investigate whether a 3PL can receive, store, sort, palletize, label, and distribute inventory to Amazon FBA, Walmart WFS, and TikTok FBT. Include 3PL receiving, storage, handling, outbound freight, and channel-specific compliance costs.
+
+### Comparison principle
+
+Compare total landed and fulfillment cost per unit for each viable route — not just ocean freight. Include origin charges, international freight, customs and duties, destination handling, final-mile delivery, platform inbound/placement fees, AWD or 3PL fees, storage, replenishment, and operational requirements. Confirm which facilities accept each inbound method before treating a route as feasible.
+
+**Investigation priority:** First establish why HA currently uses AWD — including AGL's role, AWD auto-replenishment, placement benefits, and operational convenience. Then test direct-to-FBA and 3PL alternatives against the current-state cost baseline. The goal is an evidence-based decision to retain AWD, bypass it selectively, or eliminate it where feasible — not to eliminate AWD at any cost.
+
+---
+
+**Until the next management meeting, prioritize the standard 3PL pricing project only.** Pause other improvement follow-ups and new requests unless they are urgent operational issues or Justin explicitly reprioritizes them.
+
+### Sole active priority: Standard 3PL pricing
+
+- Obtain standard, itemized rate sheets from multiple qualified US 3PL providers.
+- Follow up with providers already contacted and continue targeted outreach where needed.
+- Request comparable pricing for the same baseline service scope, including receiving, storage, pick/pack, fulfillment, and any applicable setup, account, minimum, or accessorial fees.
+- Confirm each provider's capabilities, service locations, assumptions, exclusions, and pricing validity.
+- Record response status accurately; distinguish preliminary indications from formal rate sheets.
+- Build a like-for-like comparison from the received rates and identify gaps requiring clarification.
+- **Current known position:** One 3PL rate sheet has been received. Other provider pricing is still pending; do not present outreach or preliminary information as completed quotes.
+
+**Next milestone:** Present the available standard 3PL rate comparison and outstanding quote gaps at the next meeting.
+
+
+
+Analyzed HA _ 3PL_Rate_Card_Comparison.csv:L1-49
+Edited HA _ 3PL_Rate_Card_Comparison.csv
+Ran verify new CSV columns
+
+I have added the new column **`Normalization Notes & Mapping Basis`** to [HA _ 3PL_Rate_Card_Comparison.csv](file:///c:/Users/johnw/ha-sales-report/logistics-comparison/HA%20_%203PL_Rate_Card_Comparison.csv).
+
+### How Rates Were Normalized & Mapped in the CSV:
+
+1. **Storage Normalized to Per Week (`$/pallet/week`):**
+   - **Flexport:** Quoted daily at `$2.75 / day / pallet` $\rightarrow$ normalized to `$19.25 / week` ($2.75 \times 7$). *(Includes 4 free days).*
+   - **3PL Guys:** Quoted monthly at `$30.00 / month / pallet` $\rightarrow$ normalized to `$7.00 / week` ($30 / 4.286$).
+   - **PCLA:** Quoted monthly at `$28.00 / month / pallet` $\rightarrow$ normalized to `$6.53 / week` ($28 / 4.286$). *(Includes first 30 days free).*
+   - **California FBA Prep:** Quoted monthly at `$25.00 / month / pallet` (for $10+$ pallets) $\rightarrow$ normalized to `$5.83 / week` ($25 / 4.286$). *(Prorated daily).*
+
+2. **Container Unloading Baseline (`40ft / 40HQ`):**
+   - **Flexport:** `$490.00` (for 40ft/40HQ/45HQ receiving + unloading palletized).
+   - **3PL Guys:** `$800.00` (flat rate for 40ft/40HQ/45ft floor-loaded container; their rule is *either/or* — no stacked per-carton unloading fee).
+   - **PCLA:** `$550.00` (main rate card 40ft; $650 for 40ft HC, +$100 if floor-loaded surcharge applies).
+   - **California FBA Prep:** `$500.00` (40ft floor-loaded, up to 1,500 boxes; exceeding boxes +$0.25/box).
+
+3. **Inbound Palletizing / Pallet Receiving (`$/pallet`):**
+   - **Flexport:** `$16.50 / pallet` (inbound palletizing, stretch-wrap included).
+   - **3PL Guys:** `$15.00 / pallet` (palletized receiving).
+   - **PCLA:** `$12.00 / pallet` (pallet receiving on main rate card; note: conflicts with $25 on alternate sheet).
+   - **California FBA Prep:** `$15.00 / pallet` (inbound palletizing; $10.00 if already palletized).
+
+4. **Sort / Re-Carton (`$/carton` or `$/unit`):**
+   - **Flexport:** `$0.30 / carton` (non-palletized receiving fee).
+   - **3PL Guys:** Included in the container flat rate (strictly *either/or* structure).
+   - **PCLA:** `$0.08 / unit` (per-unit receiving itemized line).
+   - **California FBA Prep:** `$0.90 / carton` (sorting mixed SKU pallet; 1–5 SKUs per container free, 5+ SKUs is $10/SKU).
+
+5. **Channel Labeling (`$/carton`):**
+   - **Flexport:** `$0.35 / label`.
+   - **3PL Guys:** `$0.20 / unit` labeling.
+   - **PCLA:** Bundled inside FBA prep tiers ($0.75–$1.25/unit all-inclusive).
+   - **California FBA Prep:** `$0.50 / label` (outbound LTL box label fee).
+
+6. **Outbound Pallet Build & Handling / Admin:**
+   - **Outbound Pallet Build:** Flexport: `$16.50` | 3PL Guys: `$25.00` (pallet forwarding) | PCLA: `$19.00` (outbound pallet & shrink-wrap) | CA Prep: `$15.00` (new pallet build).
+   - **Admin / Outbound Delivery Handling:** 3PL Guys: `$1.00 / carton` | PCLA: `$5.00` BOL fee | CA Prep: `$25.00` BOL fee (+ $10.00 pick & load).
+
+7. **Shopify / DTC Pick & Pack (`$/order`):**
+   - **PCLA:** `$1.50 / order` base tier rate.
+   - **California FBA Prep:** Normalized base order at `$1.10 / order` ($0.85 order fee at 500+ daily orders tier + $0.15 order line fee + $0.10 pick fee for items under 10 lbs).
+   - **Flexport & 3PL Guys:** Require dedicated custom DTC scope quoting.
